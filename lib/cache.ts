@@ -5,6 +5,10 @@
  *   L2: Redis (shared across all app instances, ~1ms)
  */
 
+
+
+
+
 // ─── L1 In-Memory Cache ───────────────────────────────────────────────────────
 interface CacheEntry<T> {
   value: T;
@@ -127,7 +131,7 @@ export const cache = {
 
     // Populate both layers (fire and forget)
     memCache.set(key, value, l1TtlMs);
-    redis.set(key, JSON.stringify(value), 'EX', l2TtlSec).catch(() => {});
+    redis.set(key, JSON.stringify(value), 'EX', l2TtlSec).catch(() => { });
 
     return value;
   },
@@ -135,7 +139,7 @@ export const cache = {
   /** Invalidate a key from all cache layers */
   async invalidate(key: string) {
     memCache.del(key);
-    await redis.del(key).catch(() => {});
+    await redis.del(key).catch(() => { });
   },
 
   /** Invalidate all keys matching a prefix pattern */
