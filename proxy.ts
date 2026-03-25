@@ -79,7 +79,7 @@ function isBot(ua: string): boolean {
 }
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // ─── CORS preflight ───────────────────────────────────────────────────────
