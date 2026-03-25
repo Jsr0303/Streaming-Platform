@@ -1,9 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // ─── Standalone output for Docker containerization ───────────────────────────
-  output: 'standalone',
-
   // ─── Compiler optimizations ──────────────────────────────────────────────────
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -71,12 +68,12 @@ const nextConfig: NextConfig = {
   },
 
   // ─── Experimental performance features ───────────────────────────────────────
+  // ─── Turbopack (Next.js 16 default bundler) ──────────────────────────────────
+  turbopack: {},
+
   experimental: {
     // Inline CSS for critical path
     optimizeCss: false,  // requires critters — enable after install
-    // Parallel server compilation
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
   },
 
   // ─── Webpack bundle optimizations ────────────────────────────────────────────
