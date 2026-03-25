@@ -1,6 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // ─── Standalone output for Docker containerization ───────────────────────────
+  output: 'standalone',
+
   // ─── Compiler optimizations ──────────────────────────────────────────────────
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
